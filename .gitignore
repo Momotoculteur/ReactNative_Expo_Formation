@@ -114,6 +114,7 @@ dist
 
 .expo
 __generated__
+.expo-shared/*
 
 ### ReactNative.Android Stack ###
 # Built application files
@@ -371,3 +372,4 @@ Temporary Items
 .history
 .ionide
 
+.
