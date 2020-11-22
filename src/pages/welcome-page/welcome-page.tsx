@@ -1,11 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import MainTabNavigator from './src/navigation/tabNavigator';
 
-export default function App() {
+export default function WelcomePage() {
   return (
-    <MainTabNavigator/>
+    <View style={styles.container}>
+      <Text>Accueil</Text>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
