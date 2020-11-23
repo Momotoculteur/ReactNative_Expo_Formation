@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons'
 
 import { ROUTE } from '../components/shared/constant/CRoute'
 import TodoPage from '../pages/todo-page/todo-page'
-import WelcomePage from '../pages/welcome-page/welcome-page'
+import StackNavigatorProfil from './stackNavigatorProfil'
 
 const Tab = createBottomTabNavigator()
 
@@ -67,7 +67,7 @@ export default function MainTabNavigator() {
             >
                 <Tab.Screen
                     name={ROUTE.WELCOME_TAB.MAIN}
-                    component={WelcomePage}
+                    component={StackNavigatorProfil}
 
                 />
 
