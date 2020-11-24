@@ -2,7 +2,8 @@ import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Platform, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import DatabaseManager from './src/database/DatabaseManager';
 import MainTabNavigator from './src/navigation/tabNavigator';
 import { initProfileName } from './src/service/profilAsyncStorage';
 
@@ -31,6 +32,7 @@ export default class App extends React.Component<IProps, iState> {
     componentDidMount() {
         this.loadFontsAsync();
         initProfileName();
+        DatabaseManager.initializeDatabase();
     }
 
     render() {
