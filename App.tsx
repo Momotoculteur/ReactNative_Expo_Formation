@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import MainTabNavigator from './src/navigation/tabNavigator';
+import { initProfileName } from './src/service/profilAsyncStorage';
 
 
 let customFonts = {
@@ -29,6 +30,7 @@ export default class App extends React.Component<IProps, iState> {
 
     componentDidMount() {
         this.loadFontsAsync();
+        initProfileName();
     }
 
     render() {
