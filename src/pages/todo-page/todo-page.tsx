@@ -1,11 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { INote } from '../../components/shared/interface/INote';
 import DatabaseManager from '../../database/DatabaseManager';
 import { styles } from './style'
 import Constants from 'expo-constants';
-
+import { Ionicons } from '@expo/vector-icons';
 
 interface IProps {
 }
@@ -40,7 +40,7 @@ export default class TodoPage extends React.Component<IProps, iState> {
         DatabaseManager.createNote(this.state.note)
             .then(() => {
                 this.updateListNote();
-                this.setState({note: ''})
+                this.setState({ note: '' })
             });
     }
 
@@ -56,17 +56,17 @@ export default class TodoPage extends React.Component<IProps, iState> {
         return (
             <View style={{ paddingTop: Constants.statusBarHeight, flex: 1, flexDirection: 'column' }}>
 
-                <Text style={{ flex: 1, fontSize: 30, fontWeight: 'bold' }}>A faire</Text>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+                <Text style={{ flex: 1, fontSize: 30, fontWeight: 'bold', textAlign: 'center', textAlignVertical: 'center' }}>A faire</Text>
+                <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
                     <TextInput
                         placeholder="Ajouter note"
                         value={this.state.note}
                         onChangeText={text => this.setState({ note: text })}
                     />
-                    <TouchableOpacity activeOpacity={0.7}
-                        style={styles.buttonStyle}
+                    <TouchableOpacity
+                        style={{...styles.buttonStyle}}
                         onPress={() => this.addNote()}>
-                        <Text>Ajouter </Text>
+                        <Ionicons name={Platform.OS === 'ios' ? "ios-add" : 'md-add'} size={30} color='gray' />
                     </TouchableOpacity >
                 </View>
 
@@ -75,12 +75,12 @@ export default class TodoPage extends React.Component<IProps, iState> {
                         {
                             this.state.myNoteList.map((item: INote, index) => {
                                 return (
-                                    <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
-                                        <Text>{item.text}</Text>
-                                        <TouchableOpacity activeOpacity={0.7}
+                                    <View key={item.id} style={{ flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 10, paddingRight: 10 }}>
+                                        <Text style={{textAlignVertical: 'center', flex: 1}}>{item.text}</Text>
+                                        <TouchableOpacity
                                             style={styles.buttonDelete}
                                             onPress={() => this.deleteNote(item.id)}>
-                                            <Text>Supprimer </Text>
+                                                <Ionicons name={Platform.OS === 'ios' ? "ios-trash" : 'md-trash'} size={30} color='red' />
                                         </TouchableOpacity >
                                     </View>
                                 );
